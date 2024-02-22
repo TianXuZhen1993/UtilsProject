@@ -1,46 +1,20 @@
 package com.example.utilsproject
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.utilsproject.ui.theme.UtilsProjectTheme
+import com.example.utilsproject.base.BaseActivity
+import com.example.utilsproject.databinding.ActivityMainBinding
+import com.example.utilsproject.utils.inflate
 
-class MainActivity : ComponentActivity() {
+/**
+ * @author: TXZ
+ * @version: 1.0
+ * @date: created by 2024/1/1 22:11
+ */
+class MainActivity : BaseActivity() {
+    private val binding: ActivityMainBinding by inflate()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            UtilsProjectTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    UtilsProjectTheme {
-        Greeting("Android")
+        setContentView(binding.root)
     }
 }
