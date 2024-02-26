@@ -1,4 +1,4 @@
-package com.example.utilsproject.utils
+package com.tian.utilsproject.utils
 
 import android.app.Activity
 import android.app.Dialog

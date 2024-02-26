@@ -1,4 +1,4 @@
-package com.example.utils.dputils;
+package com.tian.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

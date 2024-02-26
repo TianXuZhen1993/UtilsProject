@@ -1,4 +1,4 @@
-package com.example.utils
+package com.tian.utilsproject
 
 import org.junit.Test
 

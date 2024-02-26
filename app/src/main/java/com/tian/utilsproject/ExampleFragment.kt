@@ -1,12 +1,11 @@
-package com.example.utilsproject
+package com.tian.utilsproject
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.utilsproject.R
-import com.example.utilsproject.databinding.FragmentExampleBinding
+import com.tian.utilsproject.databinding.FragmentExampleBinding
 
 /**
  * @author: TXZ

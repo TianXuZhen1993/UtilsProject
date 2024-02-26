@@ -1,7 +1,6 @@
-package com.example.utilsproject.base
+package com.tian.utilsproject.base
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewbinding.ViewBinding
 
 /**
  * @author: TXZ
