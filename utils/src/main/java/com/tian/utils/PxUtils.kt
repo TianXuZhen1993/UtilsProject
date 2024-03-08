@@ -2,12 +2,14 @@ package com.tian.utils
 
 import android.content.Context
 
-object PxUtils {
-    fun dpToPx(context: Context, dp: Int): Int {
-        return (context.resources.displayMetrics.density * dp + 0.5f).toInt()
+object PxUtils{
+    fun dp2px(context: Context, dp: Int): Float {
+        val density = context.resources.displayMetrics.density
+        return (dp * density + 0.5f)
     }
 
-    fun spToPx(context: Context, sp: Int): Int {
-        return (context.resources.displayMetrics.scaledDensity * sp + 0.5f).toInt()
+    fun dp2px(context: Context, dp: Float): Float {
+        val density = context.resources.displayMetrics.density
+        return (dp * density + 0.5f)
     }
 }

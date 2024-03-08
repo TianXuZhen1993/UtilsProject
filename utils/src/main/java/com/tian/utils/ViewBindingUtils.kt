@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 
 
 /**
- * @Function ViewBinding 扩展函数
+ * @Function ViewBinding 扩展函数，以下方法是lazy懒加载,适用kotlin
  *
  * @author TXZ
  * @version 1.0
@@ -20,6 +20,7 @@ import androidx.viewbinding.ViewBinding
  *
  * @param VB
  * @param inflate
+ * 例如：private val viewBinding by binding(ActivityMainBinding::inflate)
  */
 fun <VB : ViewBinding> AppCompatActivity.binding(inflate: (LayoutInflater) -> VB) = lazy {
     inflate(layoutInflater).also { binding ->
@@ -27,17 +28,17 @@ fun <VB : ViewBinding> AppCompatActivity.binding(inflate: (LayoutInflater) -> VB
     }
 }
 
-
 /**
  * TODO 使用反射获取inflate方法
  *
  * @param VB
  */
-inline fun <reified VB : ViewBinding> AppCompatActivity.inflate() = lazy {
+inline fun <reified VB : ViewBinding> AppCompatActivity.inflateBinding() = lazy {
     inflateBinding<VB>(layoutInflater).also { binding ->
         if (binding is ViewDataBinding) binding.lifecycleOwner = this
     }
 }
+
 
 /**
  * TODO 获取 inflate 方法的反射，然后塞入Activity 的 layoutInflater

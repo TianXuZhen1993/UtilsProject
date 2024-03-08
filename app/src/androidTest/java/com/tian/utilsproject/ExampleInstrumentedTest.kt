@@ -1,12 +1,16 @@
 package com.tian.utilsproject
 
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.tian.utilsproject.delegate.Example
+import com.tian.utilsproject.delegate.LogInterfaceImp
+import com.tian.utilsproject.delegate.LogUtils
 
-import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import kotlin.properties.Delegates
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KProperty
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,10 +19,14 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.utilsproject", appContext.packageName)
+
+}
+
+
+fun main() {
+    val name: Int by ReadOnlyProperty<Any?, Int> { thisRef, property ->
+        println(thisRef)
+        200
     }
+    println(name)
 }
