@@ -73,8 +73,9 @@ dependencies {
     implementation libs.material
     implementation libs.constraintlayout
     implementation libs.kotlin.reflect
+    implementation libs.bundles.fragmentgroup
     //test
-    implementation 'com.blankj:utilcodex:1.31.1'
+//    implementation 'com.blankj:utilcodex:1.31.1'
     testImplementation libs.junit
     androidTestImplementation libs.androidx.test.ext.junit
 
