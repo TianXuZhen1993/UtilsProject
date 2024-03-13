@@ -11,7 +11,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 /**
- * Created by pengxr on 2021/4/7.
+ * TODO Fragment 传参，Activity 传值
  */
 
 fun <T> Fragment.argumentNullable() = FragmentArgumentPropertyNullable<T>()
@@ -26,6 +26,12 @@ fun <T> Activity.argument(defaultValue: T? = null) = ActivityArgumentProperty(de
 // Fragment
 // --------------------------------------------------------------------------------------
 
+/**
+ * TODO 获取的时候，给出默认值
+ *
+ * @param T
+ * @property defaultValue
+ */
 class FragmentArgumentProperty<T>(private val defaultValue: T? = null) :
     ReadWriteProperty<Fragment, T> {
 
@@ -37,14 +43,14 @@ class FragmentArgumentProperty<T>(private val defaultValue: T? = null) :
 
     override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T) {
         val arguments = thisRef.arguments ?: Bundle().also { thisRef.arguments = it }
-        /*if (arguments.containsKey(property.name)) {
-            // The Value is not expected to be modified
-            return
-        }*/
         arguments[property.name] = value
     }
 }
 
+/**
+ *
+ * @param 允许null值
+ */
 class FragmentArgumentPropertyNullable<T> : ReadWriteProperty<Fragment, T?> {
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T? {
@@ -53,10 +59,10 @@ class FragmentArgumentPropertyNullable<T> : ReadWriteProperty<Fragment, T?> {
 
     override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T?) {
         val arguments = thisRef.arguments ?: Bundle().also { thisRef.arguments = it }
-        if (arguments.containsKey(property.name)) {
+//        if (arguments.containsKey(property.name)) {
             // The Value is not expected to be modified
-            return
-        }
+//            return
+//        }
         arguments[property.name] = value
     }
 }
@@ -78,13 +84,20 @@ class ActivityArgumentProperty<T>(private val defaultValue: T? = null) :
 class ActivityArgumentDelegateNullable<T> : ReadOnlyProperty<Activity, T?> {
 
     override fun getValue(thisRef: Activity, property: KProperty<*>): T? {
-        return thisRef.intent?.extras?.getValue(property.name)
+        return thisRef.intent?.extras?.getValue<T>(property.name)
     }
 }
 
 // --------------------------------------------------------------------------------------
 
-operator fun <T> Bundle.set(key: String, value: T?) {
+fun <T> Bundle.getValue(key: String): T? {
+    @Suppress("UNCHECKED_CAST")
+    return get(key) as T?
+}
+
+
+
+operator fun <T> Bundle.set(key: String, value: T) {
     when (value) {
         is Boolean -> putBoolean(key, value)
         is Byte -> putByte(key, value)
@@ -94,29 +107,25 @@ operator fun <T> Bundle.set(key: String, value: T?) {
         is Long -> putLong(key, value)
         is Float -> putFloat(key, value)
         is Double -> putDouble(key, value)
-        is String? -> putString(key, value)
-        is CharSequence? -> putCharSequence(key, value)
-        is Serializable? -> putSerializable(key, value) // also ArrayList
-        is Parcelable? -> putParcelable(key, value)
-        is Bundle? -> putBundle(key, value)
-        is BooleanArray? -> putBooleanArray(key, value)
-        is ByteArray? -> putByteArray(key, value)
-        is CharArray? -> putCharArray(key, value)
-        is ShortArray? -> putShortArray(key, value)
-        is IntArray? -> putIntArray(key, value)
-        is LongArray? -> putLongArray(key, value)
-        is FloatArray? -> putFloatArray(key, value)
-        is DoubleArray? -> putDoubleArray(key, value)
-        is ArrayList<*>? -> throw IllegalStateException("ArrayList<*> $key is not supported")
-        is Array<*>? -> throw IllegalStateException("Array<*> $key is not supported")
+        is String -> putString(key, value)
+        is Bundle -> putBundle(key, value)
+        is BooleanArray -> putBooleanArray(key, value)
+        is ByteArray -> putByteArray(key, value)
+        is CharArray -> putCharArray(key, value)
+        is ShortArray -> putShortArray(key, value)
+        is IntArray -> putIntArray(key, value)
+        is LongArray -> putLongArray(key, value)
+        is FloatArray -> putFloatArray(key, value)
+        is DoubleArray -> putDoubleArray(key, value)
+        is ArrayList<*> -> throw IllegalStateException("ArrayList<*> $key is not supported")
+        is Array<*> -> throw IllegalStateException("Array<*> $key is not supported")
+        is CharSequence -> putCharSequence(key, value)
+        is Serializable -> putSerializable(key, value) // also ArrayList
+        is Parcelable -> putParcelable(key, value)
         else -> throw IllegalStateException("Type $key is not supported")
     }
 }
 
-fun <T> Bundle.getValue(key: String): T? {
-    @Suppress("UNCHECKED_CAST")
-    return get(key) as T?
-}
 
 operator fun <T> Intent.set(key: String, value: T) {
     when (value) {
@@ -128,21 +137,22 @@ operator fun <T> Intent.set(key: String, value: T) {
         is Long -> putExtra(key, value)
         is Float -> putExtra(key, value)
         is Double -> putExtra(key, value)
-        is String? -> putExtra(key, value)
-        is CharSequence? -> putExtra(key, value)
-        is Serializable? -> putExtra(key, value)
-        is Parcelable? -> putExtra(key, value)
-        is Bundle? -> putExtra(key, value)
-        is BooleanArray? -> putExtra(key, value)
-        is ByteArray? -> putExtra(key, value)
-        is CharArray? -> putExtra(key, value)
-        is ShortArray? -> putExtra(key, value)
-        is IntArray? -> putExtra(key, value)
-        is LongArray? -> putExtra(key, value)
-        is FloatArray? -> putExtra(key, value)
-        is DoubleArray? -> putExtra(key, value)
-        is ArrayList<*>? -> throw IllegalStateException("ArrayList<*> $key is not supported")
-        is Array<*>? -> throw IllegalStateException("Array<*> $key is not supported")
+        is String -> putExtra(key, value)
+        is CharSequence -> putExtra(key, value)
+        is Bundle -> putExtra(key, value)
+        is BooleanArray -> putExtra(key, value)
+        is ByteArray -> putExtra(key, value)
+        is CharArray -> putExtra(key, value)
+        is ShortArray -> putExtra(key, value)
+        is IntArray -> putExtra(key, value)
+        is LongArray -> putExtra(key, value)
+        is FloatArray -> putExtra(key, value)
+        is DoubleArray -> putExtra(key, value)
+        is ArrayList<*> -> throw IllegalStateException("ArrayList<*> $key is not supported")
+        is Array<*> -> throw IllegalStateException("Array<*> $key is not supported")
+        is Serializable -> putExtra(key, value)
+        is Parcelable -> putExtra(key, value)
         else -> throw IllegalStateException("Type $key is not supported")
     }
 }
+
