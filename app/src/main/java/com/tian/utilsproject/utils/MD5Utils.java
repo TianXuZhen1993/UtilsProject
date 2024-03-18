@@ -1,4 +1,4 @@
-package com.tian.utils;
+package com.tian.utilsproject.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

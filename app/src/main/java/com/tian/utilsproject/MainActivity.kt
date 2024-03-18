@@ -3,10 +3,10 @@ package com.tian.utilsproject
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
-import com.tian.utils.inflateBinding
 import com.tian.utilsproject.databinding.ActivityMainBinding
 import com.tian.utilsproject.fragment.OneFragment
 import com.tian.utilsproject.fragment.TwoFragment
+import com.tian.utilsproject.utils.inflateBinding
 
 /**
  * @author: TXZ

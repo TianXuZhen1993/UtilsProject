@@ -68,12 +68,11 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':utils')
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.constraintlayout
     implementation libs.kotlin.reflect
+    implementation libs.material
+    implementation libs.appcompat
     implementation libs.bundles.fragmentgroup
+    implementation libs.databinding.runtime
     //test
 //    implementation 'com.blankj:utilcodex:1.31.1'
     testImplementation libs.junit
