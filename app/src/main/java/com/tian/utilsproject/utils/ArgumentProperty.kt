@@ -1,4 +1,4 @@
-package com.tian.utilsproject
+package com.tian.utilsproject.utils
 
 import android.app.Activity
 import android.content.Intent

@@ -1,4 +1,4 @@
-package com.tian.utils
+package com.tian.utilsproject.utils
 
 import android.text.SpannableString
 import android.text.Spanned
