@@ -7,36 +7,35 @@ versionName = "1.0"
 
 agp = "8.1.1"
 org-jetbrains-kotlin-android = "1.9.0"
-
 kotlin-reflect = "1.9.0"
 core-ktx = "1.9.0"
 
 appcompat = "1.6.1"
 material = "1.10.0"
 fragment_version = "1.6.2"
-databinding-runtime = "7.1.2"
 
+databinding-runtime = "7.4.2"
+constraintlayout = "2.1.4"
 
 okhttp3 = "4.11.0"
 
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
-constraintlayout = "2.1.4"
+
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin-reflect" }
 
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 fragment = { module = "androidx.fragment:fragment", version.ref = "fragment_version" }
 fragment_ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment_version" }
 fragment_testing = { module = "androidx.fragment:fragment-testing", version.ref = "fragment_version" }
-databinding_runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databinding-runtime" }
 
-
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+databinding_runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databinding-runtime" }
 
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
 
